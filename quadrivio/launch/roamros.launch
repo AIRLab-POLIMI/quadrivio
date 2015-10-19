@@ -1,0 +1,12 @@
+<launch>
+  
+  <!-- run the node which publishes an initial guess for the robot pose -->
+
+  <node pkg="quadrivio" type="initialPose-roamros.py" name="IP"/>
+
+  <!-- run the roamros node -->
+  <node pkg="roamros" name="RR" type="roamros_node" output="screen">
+    <rosparam file="$(find quadrivio)/config/roamros-config.yaml" command="load" />
+  </node>
+  
+</launch>

@@ -1,0 +1,101 @@
+REQUIREMENTS
+
+General:
+
+1) ROS Distribution
+The architecture is developed using ROS Hydro Medusa, all packages are created using catkin.
+Newer versions (e.g. ROS Indigo Igloo) should be compatible, but there is no guarantee.
+ROS Hydro Medusa is available here: http://wiki.ros.org/hydro/Installation
+
+2) Operating System
+The OS used is Ubuntu 13.04 which is the newest version compatible with ROS Hydro Medusa.
+
+3) Joypad
+The joypad is used both in the simulation and on the robot.
+The node is available on the ROS repository:
+ sudo apt-get install ros-hydro-joy
+
+Simulation:
+
+1) V-Rep
+The simulator used is V-Rep (http://www.coppeliarobotics.com/downloads.html).
+The scene was created using version 3.1.2, there are no know issues with newer versions,
+but the scene will not work with older versions.
+V-Rep ROS services are used in the simulation and are required to compile the software.
+Follow the instruction here (http://www.coppeliarobotics.com/helpFiles/en/rosTutorialHydro.htm)
+to include them in your workspace.
+This is only for simulation, details for a robot-only version are in the HOW TO part.
+
+Robot:
+
+1) Sensors nodes
+The following packages are used to interface the system with the sensors:
+	xsens MTi: airlab repository
+	https://svn.ws.dei.polimi.it/airlab/Development/rosnodes/xsens/
+	
+	trimble GPS: ROS repository
+	sudo apt-get install ros-hydro-nmea-navsat-driver
+	GPS coordinate conversione: airlab repository
+	https://svn.ws.dei.polimi.it/airlab/Development/rosnodes/gps/
+	
+	SICK LMS laser: ROS repository
+	sudo apt-get install ros-hydro-sicktoolbox-wrapper
+	
+	SICK LD laser: bazaar repository
+	https://code.launchpad.net/~csiro-asl/csiro-asl-ros-pkg/trunk
+	
+	Prosilica cameras: ROS repository
+	sudo apt-get install ros-hydro-prosilica-camera
+	Mono odometry: git repository
+	https://github.com/uzh-rpg/rpg_svo
+	
+	dcled: WIP
+
+2) Other packages:
+	heartbeat: used to implement the internal state machine
+	airlab repository
+	https://svn.ws.dei.polimi.it/airlab/Development/rosnodes/heartbeat/
+
+3) Libraries
+	ROAMFREE: used for sensor fusion and localization
+	...
+	
+HOW TO
+
+Simulation:
+0  - Have V-Rep ROS services and messages in your workspace (described above)
+1  - Compile the software using catkin (http://wiki.ros.org/ROS/Tutorials/InstallingandConfiguringROSEnvironment)
+2  - Check that /quadrivio/launch/full.launch has the following lines
+	<!-- <include file="$(find quadrivio)/launch/sensors.launch"/> -->
+	<include file="$(find quadrivio)/launch/simSensors.launch"/>
+3  - Check that /quadrivio/config/core.yaml has the following lines
+	 #quadPLCIpAddress : "192.168.0.1"
+	 quadPLCIpAddress : "127.0.0.1"
+4  - Run roscore
+5  - set use_sim_time to True (rosparam set use_sim_time True)
+6  - Open V-Rep
+7a - Open QuadrivioLight.ttt for a simpler model (no laser, no cameras, flat terrain)
+7b - Open QuadrivioFull.ttt for a complete model
+8a - roslaunch quadrivio core.launch
+	 This is the core system, for manual drive only, no sensors, no localization.
+9b - roslaunch quadrivio full.launch
+	 This is the complete system
+10 - start the simulation
+
+Robot:
+0  - To compile without having V-Rep ROS services and messages in your workspace
+	 comment the following line in /quadrivio/CMakeLists.txt
+	 #add_subdirectory(src/simulatedSensor)
+1  - Compile the software using catkin
+2  - Check that /quadrivio/launch/full.launch has the following lines
+	 <include file="$(find quadrivio)/launch/sensors.launch"/>
+	 <!-- <include file="$(find quadrivio)/launch/simSensors.launch"/> -->
+3  - Check that /quadrivio/config/core.yaml has the following lines
+	 quadPLCIpAddress : "192.168.0.1"
+	 #quadPLCIpAddress : "127.0.0.1"
+4  - Run roscore
+5  - Turn on the robot
+6a - roslaunch quadrivio core.launch
+	 This is the core system, for manual drive only, no sensors, no localization.
+9b - roslaunch quadrivio full.launch
+	 This is the complete system

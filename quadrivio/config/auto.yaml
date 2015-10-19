@@ -1,0 +1,46 @@
+trajectoryRecorder:
+  dead_zone: 0.5 #meters
+
+fastPredictor:
+  frequency: 50
+  frame: roamfree
+
+trajectoryGenerator:
+  speed: 3.0
+
+trajectoryControl:
+  maxCurvature: 0.625 # straightforward
+  sogliaAlpha: 0.001 # magic number
+  lambda: 0.001 # size of an ellipsoid. magic number
+  epsilon: 0.7 # another size of an ellispoid. Bigger means bigger.
+  gamma: 1 # speed = gamme * e (euclidean error wrt following frame)
+  H: 3.0 # gains for steering
+  beta:  2.2 # more gains
+  max_negative_acceleration: -1 # in (m/s^2)
+  butter_loss: 1 # in percentage of the current amount of deceleration left to spread
+  min_vel: 2.0 # minimum velocity [m/s]
+  max_vel: 3.0 # maximum velocity [m/s]
+  min_curv: 0.1 # curvature @99% max_vel
+  max_curv: 0.4 # curvature @101% min_vel
+
+trajectoryPlanner:
+  primitivesFile: "/home/gianluca/Source/sbpl/myprimitives/xythetav_prim/xythetav_safe.txt"
+  envType: "xythetav"
+  startEpsilon: 64
+  vehicleWidth: 0.96
+  vehicleLength: 1.25
+  obsthresh: 1
+  cost_inscribed_thresh: 1
+  cost_possibly_circumscribed_thresh: 0
+  cellsize_m: 1
+  nominalvel: 3
+  timetoturn: 10000
+  numTheta: 16
+  numV: 7
+  velocities: [-9.0, -3.0, -1.5, 0.1, 1.5, 3.0, 9.0]
+  numOmega: 5
+  omegas: [0]
+  numSteers: 5
+  allocated_time_secs_foreachplan: 1500
+  bsearchuntilfirstsolution: false
+  bforwardsearch: false

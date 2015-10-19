@@ -1,0 +1,9 @@
+<launch>
+  <!-- load the quad parameters -->
+  <include file="$(find quadrivio)/launch/core.launch"/>
+  <!-- <include file="$(find quadrivio)/launch/sensors.launch"/> -->
+  <include file="$(find quadrivio)/launch/simSensors.launch"/>
+  <include file="$(find quadrivio)/launch/auto.launch"/>
+  <include file="$(find quadrivio)/launch/tf-tree.launch"/>
+  <include file="$(find quadrivio)/launch/roamros.launch"/>
+</launch>

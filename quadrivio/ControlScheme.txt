@@ -1,0 +1,26 @@
+Quadrivio control scheme:
+
+  State machine
+
+    In state HALT (starting state):
+    BACK+START --> SAFE
+
+    In state SAFE:
+    BACK+START --> HALT
+    RB         --> ASSISTED
+    LB         --> MANUAL
+    LT + RT    --> AUTO
+
+    In states ASSISTED, MANUAL and AUTO:
+    B          --> SAFE
+
+  Veichle movement
+    Left analog UP: speed
+    Left analog DOWN: brake
+    Right analog LEFT/RIGHT: steer
+
+  Trajectory recorder:
+    while doing nothing: A --> start recording
+    while recording:     A --> stop recording
+    after recording:     Y --> confirm trajectory
+    after recording:     X --> delete trajectory/reset

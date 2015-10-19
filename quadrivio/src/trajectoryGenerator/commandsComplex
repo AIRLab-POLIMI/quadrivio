@@ -1,0 +1,52 @@
+#right turn
+0.4,0.07853,20
+#right turn
+0.4,0.07853,20
+#left turn
+0.6,-0.07853,20
+#left turn
+0.6,-0.07853,20
+#straight line 10 meters
+0.1,0,100
+#left turn
+0.4,0.07853,20
+#straight line 1 meter
+0.1,0,10
+#left turn
+0.4,0.07853,20
+#straight line 20 meters
+0.1,0,200
+#left turn
+0.4,0.07853,20
+#straight line 1 meter
+0.1,0,10
+#left turn
+0.4,0.07853,20
+#straight line 10 meters
+0.1,0,100
+#left turn
+0.6,-0.07853,20
+#left turn
+0.6,-0.07853,20
+#right turn
+0.4,0.07853,20
+#right turn
+0.4,0.07853,20
+#straight line 10 meters
+0.1,0,100
+#left turn
+0.4,0.07853,20
+#straight line 1 meter
+0.1,0,10
+#left turn
+0.4,0.07853,20
+#straight line 20 meters
+0.1,0,200
+#left turn
+0.4,0.07853,20
+#straight line 1 meter
+0.1,0,10
+#left turn
+0.4,0.07853,20
+#straight line 10 meters
+0.1,0,100

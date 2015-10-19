@@ -1,0 +1,10 @@
+<launch>
+  <include file="$(find quadrivio)/launch/sensors/trimbleGPS.launch"/>
+  <include file="$(find quadrivio)/launch/sensors/stereo_cameras.launch"/>
+  <include file="$(find quadrivio)/launch/sensors/stereo_odometry.launch"/>
+  <include file="$(find quadrivio)/launch/sensors/sicklms291.launch"/>
+  <node pkg="xsens" type="xsensImu" name="xsensImu">
+    <param name="device" value="/dev/xsens" />
+  </node>
+  <node pkg="quadrivio" type="dcled" name="dcled" />
+</launch>

@@ -1,0 +1,12 @@
+PLCclient:
+  #quadPLCIpAddress : "192.168.0.1"
+  quadPLCIpAddress : "127.0.0.1"
+  quadPLCPort : "20001"
+  frequency : 10 # Hz
+  heratbeatTimeout: 0.5 # if I don't receive a PLC odometry for more that
+  kSpeed: 0.0584
+  kSteer: -0.5622
+
+joypad_translate:
+  max_speed : 5
+  max_steer : 0.36368

@@ -1,0 +1,6 @@
+SUBSYSTEM=="tty", ATTRS{idVendor}=="0403", ATTRS{idProduct}=="6015", ATTRS{serial}=="DA0034UR", SYMLINK+="skytraq"
+SUBSYSTEM=="usbmisc", ATTRS{product}=="USB LED Message Board v1.0", ATTRS{idProduct}=="0013", SYMLINK+="dcled"
+SUBSYSTEM=="tty", ATTRS{serial}=="XSV8BTGS", ATTRS{idProduct}=="d38b", SYMLINK+="xsens"
+SUBSYSTEM=="input", KERNEL=="js1", SYMLINK+="joy"
+SUBSYSTEM=="tty", ATTRS{manufacturer}=="FTDI", ATTRS{serial}=="FTUUYD2A", SYMLINK+="lms291"
+SUBSYSTEM=="tty", ATTRS{manufacturer}=="Prolific Technology Inc. ", ATTRS{idVendor}=="0557", SYMLINK+="trimble"

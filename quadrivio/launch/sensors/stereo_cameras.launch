@@ -1,0 +1,32 @@
+<launch>
+  <arg name="right" value="stereo/right" />
+  <node name="right_driver" pkg="prosilica_camera" type="prosilica_node" output="screen">
+    <remap from="camera" to="$(arg right)" />
+    <param name="guid" type="str" value="45032" />
+    <param name="ip_address" type="str" value="" />
+    <param name="trigger_mode" value="streaming" />
+    <param name="frame_id" value="stereo_frame" />
+    <param name="auto_adjust_stream_bytes_per_second" value="false" />
+    <param name="stream_bytes_per_second" value="1804800" />
+    <param name="gain" value="16" />
+    <param name="auto_exposure" value="true" />
+    <param name="exposure" value="0.01" />
+    <param name="exposure_auto_target" value="35"/>
+  </node>
+  
+  <arg name="left" value="stereo/left" />
+  <node name="left_driver" pkg="prosilica_camera" type="prosilica_node" output="screen">
+    <remap from="camera" to="$(arg left)" />
+    <param name="guid" type="str" value="45031" />
+    <param name="ip_address" type="str" value="" />
+    <param name="trigger_mode" value="syncin2" />
+    <param name="frame_id" value="stereo_frame" />
+    <param name="auto_adjust_stream_bytes_per_second" value="false" />
+    <param name="stream_bytes_per_second" value="1804800" />
+    <param name="gain" value="16" />
+    <param name="auto_exposure" value="true" />
+    <param name="exposure" value="0.01" />
+    <param name="exposure_auto_target" value="35"/>
+  </node>
+</launch>
+

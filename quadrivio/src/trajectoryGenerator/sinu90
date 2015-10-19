@@ -1,0 +1,20 @@
+#straight line 2 meters
+0.1,0,20
+#right turn
+0.1,-0.07853,20
+#straight line 4 meter
+0.1,0,40
+#left turn
+0.1,0.07853,20
+#straight line 4 meters
+0.1,0,20
+#straight line 2 meters
+0.1,0,20
+#right turn
+0.1,-0.07853,20
+#straight line 4 meter
+0.1,0,40
+#left turn
+0.1,0.07853,20
+#straight line 4 meters
+0.1,0,20

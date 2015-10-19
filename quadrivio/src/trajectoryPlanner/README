@@ -1,0 +1,35 @@
+THIS NODE IS IN TESTING PHASE, SO IT COULD WORK NOT PROPERLY
+
+This folder contains the ros node to make plans with sbpl. To use this node is important make some preliminary steps:
+
+- First of all install sbpl on the system
+	- Clone the svn repo at address https://svn.ws.dei.polimi.it/airlab/Thesis/ConfortoAndrea-779840/sbpl/
+	- Execute some commands into sbpl directory
+		mkdir build
+		cd build
+		cmake ..
+		make
+		sudo make install
+	- Now sbpl is installed into your system
+
+- Open the file planConf.yaml and substitute <SBPL_REPOCLONED_ROOT> with the directory cloned previously or specify a valid motion primitives file
+- Copy the piece of configuration into a used configuration file or load planConf.yaml configuration file during launch
+- Adding the subdirectory in the CMakeLists.txt file of the quadrivio node
+- Compile the ROS node
+- The planner should work
+
+How to use:
+
+- Launch the node with
+	rosrun quadrivio trajectoryPlanner
+  or include the node into a launch file
+- The map is given via topic /map. However, map_server actually provides only 1s & 0s maps.
+  To have a better map for planning clone the ROS node at the link
+	https://svn.ws.dei.polimi.it/airlab/Thesis/ConfortoAndrea-779840/map_server_decimal_costs
+  compile it, place the terminal in a directory with a png greyscale file and its corresponding yaml file  and launch node with
+	rosrun map_server_decimal_costs map_server_decimal_costs <FILE_NAME>.yaml
+- The start position actually is given statically by code, after will be given by roamfree (roamfree must be in execution anyway)
+- The goal position is given to the planner using rviz, so launch rviz with
+	rosrun rviz rviz
+  and open testPlanner.rviz; a map should be visualized. Now select 2D Nav Goal and click on the map where you want the goal
+- The planning process should start

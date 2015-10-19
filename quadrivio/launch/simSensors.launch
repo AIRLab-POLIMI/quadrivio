@@ -1,0 +1,15 @@
+<launch>
+
+  <node pkg="quadrivio" type="clock" name="clock"/>
+
+  <node pkg="quadrivio" type="simulatedGPS" name="simulatedGPS">
+    <param name="threshold" value="15"/>
+  </node>
+  <node pkg="quadrivio" type="simulatedImu" name="simulatedImu"/>
+  <node pkg="quadrivio" type="simulatedMagnetometer" name="simulatedMagnetometer">
+    <remap from="simulatedMagnetometer/magneticField" to="/RR/sensors/Magnetometer/parameters/h" />
+    <remap from="simulatedMagnetometer/R" to="/RR/sensors/Magnetometer/parameters/R" />
+    <remap from="simulatedMagnetometer/S" to="/RR/sensors/Magnetometer/parameters/S" />
+  </node>
+  <node pkg="quadrivio" type="realPose" name="realPose"/>
+</launch>

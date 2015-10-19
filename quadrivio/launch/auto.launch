@@ -1,0 +1,14 @@
+<launch>
+  <rosparam file="$(find quadrivio)/config/auto.yaml" command="load"/>
+  <!-- <node pkg="quadrivio" type="trajectoryRecorder" name="trajectoryRecorder"/> -->
+  <!-- <node pkg="quadrivio" type="trajectoryPlanner" name="trajectoryPlanner"/> -->
+  <node pkg="quadrivio" type="trajectoryGenerator" name="trajectoryGenerator"/>
+  <node pkg="quadrivio" type="fastPredictor" name="fastPredictor">
+    <remap from="odometry" to="PLC/ackermann_odometry" />
+    <remap from="reference/frequency" to="/RR/solver/frequency" />
+  </node>
+
+  <include file="$(find quadrivio)/launch/trajectoryControl.launch"/>
+
+  <node pkg="quadrivio" type="pathDisplay" name="pathDisplay"/>
+</launch>

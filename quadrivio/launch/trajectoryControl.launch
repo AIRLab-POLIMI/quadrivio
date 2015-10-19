@@ -1,0 +1,5 @@
+  <launch>
+    <node pkg="quadrivio" type="trajectoryControl" name="trajectoryControl" launch-prefix="" output="screen">
+      <remap from="ackermannParameters/L" to="/RR/sensors/Odometry/parameters/L" />
+    </node>
+  </launch>

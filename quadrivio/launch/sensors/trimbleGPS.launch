@@ -1,0 +1,12 @@
+<launch>
+  
+  <node pkg="nmea_navsat_driver" type="nmea_serial_driver" name="GPS">
+    <param name="port" value="/dev/trimble" />
+    <param name="baud" value="57600" />
+  </node>
+  <node pkg="gps" type="nmea_to_enu" name="nmea_to_enu">
+    <param name="latitude" value="45.4787" />
+    <param name="longitude" value="9.2331" />
+    <param name="height" value="144" />
+  </node>
+</launch>

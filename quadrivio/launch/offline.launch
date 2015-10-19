@@ -1,0 +1,17 @@
+<launch>
+
+  <!-- use time from the /clock topic -->
+  <param name="use_sim_time" value="True"/>
+  
+  <!-- load the quad parameters -->
+  <rosparam file="$(find quadrivio)/config/quadconf.yaml" command="load"/>
+
+  <!-- 
+
+  may be needed in case /tf topic is not present in the bag
+  include file="$(find quadrivio)/launch/tf-tree.launch" 
+
+  -->
+
+  <include file="$(find quadrivio)/launch/roamros.launch"/>
+</launch>

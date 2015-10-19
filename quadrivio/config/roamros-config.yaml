@@ -1,0 +1,101 @@
+solver:
+  base_link_frame_id: /roamfree
+  global_frame_id: /world
+
+  pose_window_length: 5.0 # in seconds
+  dead_reckoning: False
+  frequency: 10.0
+  n_gauss_newton_iterations: 5
+  low_level_logging: False
+  
+sensors:
+  'Odometry':
+    type: AckermannOdometer
+    is_master: True
+    frame_id: /roamfree
+    topic: /PLC/ackermann_odometry
+    topic_type: roamros/SingleTrackAckermannOdometryStamped
+    use_header_stamp: True    
+    static_covariance: True
+    covariance: [   10.0,          0.0,        0.0,        0.0,        0.0,        0.0,
+                     0.0,          1.0,        0.0,        0.0,        0.0,        0.0,
+                     0.0,          0.0,        1.0e-4,     0.0,        0.0,        0.0,
+                     0.0,          0.0,        0.0,     1.0e-6,        0.0,        0.0,
+                     0.0,          0.0,        0.0,        0.0,      1.0e-6,        0.0,
+                     0.0,          0.0,        0.0,        0.0,        0.0,      1.0e-6]
+
+    parameters:     
+      kSpeed: [0.0584]
+      kSteer: [-0.5622]
+      psiSteer: [-0.006]
+      L: [1.25]
+
+  'Magnetometer':
+    type: VectorField
+    is_master: False
+    frame_id: /imu
+    topic: /magnetic
+    topic_type: sensor_msgs/MagneticField
+    use_header_stamp: True
+    static_covariance: True
+    covariance: [    1.0e-2,  0.0,  0.0,
+                     0.0,  1.0e-2,  0.0,
+                     0.0,  0.0,  1.0e-2 ]
+
+    parameters:
+      h: [0.007719, 0.225097, -0.416133]
+
+# old calibration, pre imu movement
+#      R: [ 1.8492, -0.0450,  0.0096,
+#           0.0704,  1.7959, -0.0064,
+#           0.1077, -0.0304,  0.6137]
+#      S: [-0.1268,  0.0232, -0.5139]
+
+# new one
+      R: [    1.737,   0.02352,    0.1375,
+            0.06195,     1.682,   0.04554,
+          -0.007721, -0.001173,    0.5542]
+
+      S: [ -0.07541,    0.1091,   -0.5801]
+
+
+  'GPS':
+    type: AbsolutePosition
+    is_master: False
+    frame_id: /gps
+    topic: /enu
+    topic_type: geometry_msgs/PoseWithCovarianceStamped
+    use_header_stamp: True
+    static_covariance: False
+
+  'Gyroscope':
+    type: AngularVelocity
+    is_master: False
+    frame_id: /imu
+    topic: /imu/data
+    topic_type: sensor_msgs/Imu
+    use_header_stamp: True
+    static_covariance: True
+    covariance: [1.0e-2,    0.0, 0.0,
+                    0.0, 1.0e-2, 0.0,
+                    0.0,    0.0, 1.0e-2 ]
+
+    parameters:
+     G: [1.0, 1.0, 1.0]
+     B: [0.0, 0.0, 0.0]
+
+  # 'Accelerometer':
+  #   type: LinearAcceleration
+  #   is_master: False
+  #   frame_id: /imu
+  #   topic: /imu/data
+  #   topic_type: sensor_msgs/Imu
+  #   use_header_stamp: True
+  #   static_covariance: True
+  #   covariance: [1.0e+0,    0.0, 0.0,
+  #                   0.0, 1.0e+0, 0.0,
+  #                   0.0,    0.0, 1.0e+0 ]
+
+  #   parameters:
+  #    G: [1.0, 1.0, 1.0]
+  #    B: [0.0, 0.0, 0.0]

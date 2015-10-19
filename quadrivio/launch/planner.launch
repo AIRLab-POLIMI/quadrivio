@@ -1,0 +1,4 @@
+<launch>
+  <rosparam file="$(find quadrivio)/config/planConf.yaml" command="load"/>
+  <node pkg="quadrivio" type="trajectoryPlanner" name="trajectoryPlanner" output="screen"/>  
+</launch>

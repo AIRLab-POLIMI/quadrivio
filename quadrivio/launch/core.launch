@@ -1,0 +1,11 @@
+<launch>
+  <rosparam file="$(find quadrivio)/config/core.yaml" command="load"/>
+  <node pkg="heartbeat" type="server_node" name="hb_ser"/>
+  <node pkg="quadrivio" type="PLCclient" name="PLC"/>
+  <node pkg="quadrivio" type="joypad_translate" name="joy_t"/>
+  <node pkg="joy" type="joy_node" name="joy_dr">
+    <param name="dev" value="/dev/input/js0"/>
+    <param name="deadzone" value="0.1" />
+  </node>
+  <node pkg="quadrivio" type="stateShower" name="stShow" />
+</launch>

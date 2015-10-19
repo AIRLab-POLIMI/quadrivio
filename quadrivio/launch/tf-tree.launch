@@ -1,0 +1,8 @@
+<launch>
+
+  <node name="gps_transformation_publisher" pkg="tf" type="static_transform_publisher" args="0.7 -0.46 0.88 0 0 0 1 /base_link /gps 500"/>
+  <node name="imu_transformation_publisher" pkg="tf" type="static_transform_publisher" args="0.96 -0.03 0.9 0 0 0 1 /base_link /imu 500"/>
+  <node name="laser_transformation_publisher" pkg="tf" type="static_transform_publisher" args="1.74 0 0.15 0 0 3.14 /base_link laser 500"/>
+  <node name="stereo_transformation_publisher" pkg="tf" type="static_transform_publisher" args="1.77 0 0.91 -1.5707 0 -1.5707 /base_link stereo_frame 500"/>
+
+</launch>

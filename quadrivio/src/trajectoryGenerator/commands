@@ -1,0 +1,18 @@
+#straight line 5 meters
+0.1,0,50
+#left turn
+0.3,0.07853,20
+#straight line 1 meter
+0.1,0,10
+#left turn
+0.3,0.07853,20
+#straight line 10 meters
+0.1,0,100
+#left turn
+0.3,0.07853,20
+#straight line 1 meter
+0.1,0,10
+#left turn
+0.3,0.07853,20
+#straight line 5 meters
+0.1,0,50

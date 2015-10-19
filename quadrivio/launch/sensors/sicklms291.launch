@@ -1,0 +1,6 @@
+<launch>
+  <node pkg="sicktoolbox_wrapper" type="sicklms" name="laser">
+    <param name="port" value="/dev/lms291" />
+    <param name="baud" value="500000" />
+  </node>
+</launch>
